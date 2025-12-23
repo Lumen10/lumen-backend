@@ -84,23 +84,25 @@ This backend serves the Next.js frontend application. Make sure to configure the
 
 ## 🚢 Deployment
 
-### Strapi Cloud Deployment (Recommended)
+### Render Deployment
 
-This project is configured for deployment on **Strapi Cloud**. See the detailed guide in [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions.
+This project is configured for deployment on **Render**. See the detailed guide in [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions.
 
 **Quick Start:**
 1. Generate environment variables: `node generate-env-keys.js`
 2. Push your code to GitHub/GitLab/Bitbucket
-3. Sign up at [Strapi Cloud](https://cloud.strapi.io)
-4. Connect your repository and deploy
-5. Configure environment variables in the Strapi Cloud dashboard
+3. Sign up at [Render](https://render.com)
+4. Create a PostgreSQL database on Render
+5. Create a Web Service and connect your repository
+6. Configure environment variables in the Render dashboard
+7. Deploy!
 
 **Other Deployment Options:**
+- **Strapi Cloud**: [https://cloud.strapi.io](https://cloud.strapi.io)
 - **Railway**: [https://railway.app](https://railway.app)
-- **Render**: [https://render.com](https://render.com)
 - **DigitalOcean**: [https://www.digitalocean.com](https://www.digitalocean.com)
 
-For detailed Strapi Cloud deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+For detailed Render deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 📚 Tech Stack
 

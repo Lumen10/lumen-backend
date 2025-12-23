@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: lumen-strapi-backend
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_SSL
+        value: true
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      # These should be set in Render dashboard:
+      # - APP_KEYS (comma-separated, 4 keys)
+      # - ADMIN_JWT_SECRET
+      # - API_TOKEN_SALT
+      # - TRANSFER_TOKEN_SALT
+      # - ENCRYPTION_KEY
+      # - DATABASE_URL (from PostgreSQL service)
+
+databases:
+  - name: lumen-strapi-db
+    plan: starter
+    databaseName: strapi
+    user: strapi
+
