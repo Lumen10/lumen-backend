@@ -21,6 +21,7 @@ PORT=10000
 DATABASE_CLIENT=postgres
 DATABASE_URL=postgresql://user:password@host:port/database
 DATABASE_SSL=true
+DATABASE_SSL_REJECT_UNAUTHORIZED=false
 
 # App Keys (4 keys, comma-separated)
 APP_KEYS=key1,key2,key3,key4

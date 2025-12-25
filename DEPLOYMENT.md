@@ -72,8 +72,9 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
    - **Branch**: `main` (or your default branch)
    - **Root Directory**: Leave empty (or `./` if needed)
    - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `npm start`
+   - **Start Command**: `npm start` (or `npm run start`)
    - **Plan**: Choose a plan (Starter is fine to start)
+   - **Important**: Make sure to use `npm` commands, not `yarn`. The `package.json` has been configured to use npm.
 
 3. **Configure Environment Variables:**
    In the Render dashboard, add these environment variables:
@@ -85,6 +86,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
    DATABASE_CLIENT=postgres
    DATABASE_URL=<your_postgres_internal_database_url>
    DATABASE_SSL=true
+   DATABASE_SSL_REJECT_UNAUTHORIZED=false
    APP_KEYS=<generated_keys_from_step_1>
    ADMIN_JWT_SECRET=<generated_secret>
    API_TOKEN_SALT=<generated_salt>
@@ -169,23 +171,30 @@ By default, uploads are stored on disk. For production, consider:
 
 ## Troubleshooting
 
-### Build Fails
+### Build Fails / Yarn/Corepack Errors
+- **If you see "yarn start" or Corepack errors**: The `packageManager` field has been removed from `package.json` to force npm usage
+- Ensure your Render service uses `npm start` (or `npm run start`) as the start command, not `yarn start`
 - Check that all dependencies are in `package.json`
 - Ensure Node.js version matches (20.x - 24.x)
 - Check build logs in Render dashboard
 - Verify `pg` package is installed (already added)
+- If Render still tries to use yarn, manually set the start command to `npm start` in the Render dashboard
 
-### Database Connection Issues
+### Database Connection Issues / SSL Certificate Errors
+- **If you see "self-signed certificate" errors**: Add `DATABASE_SSL_REJECT_UNAUTHORIZED=false` to your environment variables
 - Verify `DATABASE_URL` is set correctly (use Internal Database URL)
 - Check that `DATABASE_CLIENT=postgres` is set
 - Ensure `DATABASE_SSL=true` is set
+- Add `DATABASE_SSL_REJECT_UNAUTHORIZED=false` to accept Render's self-signed certificates
 - Verify the database service is running
 
-### Service Won't Start
+### Service Won't Start / Port Issues
+- **If you see "No open ports detected"**: Ensure `PORT=10000` is set in environment variables
 - Check the logs in Render dashboard
 - Verify all environment variables are set
-- Ensure `PORT=10000` (Render's default)
-- Check that `HOST=0.0.0.0`
+- Ensure `PORT=10000` (Render's default port)
+- Check that `HOST=0.0.0.0` is set
+- Verify the start command is `npm start` (not `yarn start`)
 
 ### CORS Errors
 - Verify your frontend URL is in the CORS origin list in `config/middlewares.ts`

@@ -12,6 +12,8 @@ services:
         value: postgres
       - key: DATABASE_SSL
         value: true
+      - key: DATABASE_SSL_REJECT_UNAUTHORIZED
+        value: false
       - key: HOST
         value: 0.0.0.0
       - key: PORT
