@@ -71,7 +71,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
    - **Region**: Same region as your database
    - **Branch**: `main` (or your default branch)
    - **Root Directory**: Leave empty (or `./` if needed)
-   - **Build Command**: `npm install && npm run build`
+   - **Build Command**: `npm install && rm -rf .cache build dist && npm run build`
    - **Start Command**: `npm start` (or `npm run start`)
    - **Plan**: Choose a plan (Starter is fine to start)
    - **Important**: Make sure to use `npm` commands, not `yarn`. The `package.json` has been configured to use npm.
